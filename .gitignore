@@ -1,0 +1,4 @@
+.idea
+vendor
+test.sh
+composer.lock

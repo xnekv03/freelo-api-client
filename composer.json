@@ -1,0 +1,46 @@
+{
+  "name": "xnekv03/freelo-api-client",
+  "description": "Freelo api wrapper",
+  "type": "library",
+  "keywords": [
+    "freelo",
+    "project management",
+    "task management",
+    "tasks",
+    "team cooperation"
+  ],
+  "homepage": "https://www.freelo.cz",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vojta Nekvapil",
+      "homepage": "https://abalin.net",
+      "email": "fby@post.cz"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "^6.5",
+    "nesbot/carbon": "^2.28",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^0.12",
+    "squizlabs/php_codesniffer": "3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Freelo\\": "src/freelo/"
+    }
+  },
+  "scripts": {
+    "build": [
+      "@composer install --no-progress --no-interaction --no-suggest --no-scripts",
+      "@phpcs",
+      "@phpstan"
+    ],
+    "phpcs": "vendor/bin/phpcs --colors -v --standard=PSR2 src",
+    "phpstan": "vendor/bin/phpstan analyse -v src"
+  }
+}
