@@ -41,7 +41,7 @@ Login to your [Dashboard](https://app.freelo.cz/dashboard), go to your Settings 
 `9lDZU35Lb0wmnq4tWvmmUkugLja4dXwPDcOMP1CBdIa`
 
 
-### Inicialize API Client 
+### Initialize API Client 
 
 ```php
 # load autoload file
@@ -53,7 +53,7 @@ use Freelo\Client;
 $freeloApiToken = '9lDZU35Lb0wmnq4tWvmmUkugLja4dXwPDcOMP1CBdIa';
 $loginEmail = 'john@doe.com';
 
-# Inicialize a client
+# Initialize a client
 $freeloClient = new Client($freeloApiToken,$loginEmail);
 ```
 
@@ -71,7 +71,7 @@ echo $projectId;        // 74201 - project ID is returned
 
 ```php
 $projects = $freeloClient->getAllOwnProjectIncludinglToDo();
-var_dump($projects);        // array with all projects including their names, IDs and tasklists
+var_dump($projects);        // array with all projects including their names, IDs and task lists
 ```
 
 ### Paginated collection of all invited projects
@@ -115,3 +115,4 @@ $taskId = 179444;     // ID of existing task
 $workers = $freeloClient->assignableWorkersCollection($projectId, $taskId);
 var_dump($workers);        // array with available workers and their IDs
 ```
+
