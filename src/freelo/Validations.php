@@ -8,7 +8,6 @@ use Exception;
 
 trait Validations
 {
-    protected $supportedCurrencies = ['czk', 'eur', 'usd'];
 
     /**
      * @throws Exception
@@ -37,13 +36,6 @@ trait Validations
         }
 
         return true;
-    }
-
-    public function currencyValidation(string $currencyIso): void
-    {
-        if (!in_array(strtolower($currencyIso), $this->supportedCurrencies)) {
-            throw new \InvalidArgumentException('Unsupported currency');
-        }
     }
 
     /**
@@ -116,12 +108,36 @@ trait Validations
     /**
      * @throws Exception
      */
-    public function budgetValidation(int $budget): void
+    public function budgetValidation(float $budget): void
     {
+
         if (floor($budget) !== $budget) {
             throw new Exception(
-                'currency amount in string format (2 decimal places with no decimal separator, ie. 1.05 = \'105\')'
+                '2 decimal places with no decimal separator, ie. 1.05 = \'105\''
             );
         }
+    }
+
+    public function projectExists(int $projectId): bool
+    {
+        $ownProjects = $this->getAllOwnProjectIncludinglToDo();
+        $invitedProjects = $this->getAllInvitedProjects();
+
+        if (!count($ownProjects) && !count($invitedProjects)) {
+            return false;
+        }
+
+        foreach ($invitedProjects as $value) {
+            if ($projectId === $value->id) {
+                return true;
+            }
+        }
+
+        foreach ($ownProjects as $value) {
+            if ($projectId === $value->id) {
+                return true;
+            }
+        }
+        return false;
     }
 }

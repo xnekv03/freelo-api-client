@@ -2,3 +2,4 @@
 vendor
 test.sh
 composer.lock
+test.php
